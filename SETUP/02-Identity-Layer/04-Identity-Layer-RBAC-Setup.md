@@ -133,7 +133,7 @@ $UsersOU  = "OU=Users,$TopOU"
 $GroupsOU = "OU=Groups,$TopOU"
 $SvcOU    = "OU=ServiceAccounts,$TopOU"
 
-$Password = ConvertTo-SecureString "Cipher@1" -AsPlainText -Force
+$Password = ConvertTo-SecureString "Password@!" -AsPlainText -Force
 
 Clear-Host
 Write-Host "=====================================" -ForegroundColor Cyan
