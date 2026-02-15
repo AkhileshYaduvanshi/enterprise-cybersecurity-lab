@@ -13,7 +13,7 @@ This ensures:
 
 ---
 
-# 1️⃣ Identity Architecture Overview
+# Identity Architecture Overview
 
 Domain:
 lab.internal
@@ -36,7 +36,7 @@ Gitea integrates with Active Directory through a dedicated service account.
 
 ---
 
-# 2️⃣ Create Dedicated LDAP Service Account
+# Create Dedicated LDAP Service Account
 
 ## Why Not Use Administrator?
 
@@ -80,7 +80,7 @@ Get-ADUser $UserName -Properties Enabled,PasswordNeverExpires,DistinguishedName
 
 ---
 
-# 3️⃣ Create Gitea RBAC Groups
+# Create Gitea RBAC Groups
 
 Two security groups were created:
 
@@ -131,7 +131,7 @@ Get-ADGroupMember "Gitea_Analyst"
 
 ---
 
-# 4️⃣ Configure LDAP in Gitea
+# Configure LDAP in Gitea
 
 Login to Gitea as local admin.
 
@@ -160,7 +160,7 @@ Save configuration.
 
 ---
 
-# 5️⃣ Validate LDAP Authentication
+# Validate LDAP Authentication
 
 1. Log out of Gitea.
 2. Log in using AD credentials.
@@ -180,7 +180,7 @@ If successful:
 
 ---
 
-# 6️⃣ Optional – Admin Filter (RBAC Enforcement)
+# Optional – Admin Filter (RBAC Enforcement)
 
 To automatically grant Gitea admin privileges only to members of Gitea_Admin:
 
