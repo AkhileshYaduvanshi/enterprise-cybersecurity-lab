@@ -1,12 +1,16 @@
-# Proxmox VE 9.1 - Bare Metal Installation & Configuration
+# Proxmox - Infrastructure Base
 
-## Installation Overview
+This section covers the bare metal installation and initial configuration of Proxmox VE, which serves as the foundation for your entire lab infrastructure.
+
+## Overview
+
+Proxmox VE (PVE) is a powerful, open-source virtualization platform built on Debian Linux. It provides:
+- KVM hypervisor for virtual machine management
+- LXC containers for lightweight containerization
+- High availability and clustering support
+- Web-based management interface
 
 This guide documents the complete installation of Proxmox VE 9.1 on bare metal hardware using the graphical installer.
-
-**Proxmox Version:** 9.1 (ISO 1)
-**Installation Mode:** Graphical Installer
-**Target OS:** Debian-based Linux with KVM hypervisor
 
 ---
 
@@ -19,7 +23,6 @@ This guide documents the complete installation of Proxmox VE 9.1 on bare metal h
 
 ### Actions
 1. System automatically initializes the installer
-2. Accept the warning about hardware acceleration
 3. Review the End User License Agreement (EULA)
 4. Click **I Agree** to continue
 
