@@ -105,10 +105,10 @@ These groups represent job roles and simplify user onboarding.
 
 Groups
 └── Teams
-├── secops
-├── devops
-├── infraops
-└── auditor
+      ├── secops
+      ├── devops
+      ├── infraops
+      └── auditor
 
 ```
 
@@ -126,15 +126,15 @@ These groups define application-level access used by LDAP integrations.
 
 Groups
 └── Tools
-├── wazuh-admin
-├── wazuh-analyst
-├── wazuh-audit
-├── gitea-admin
-├── gitea-dev
-├── jenkins-admin
-├── jenkins-dev
-├── vpn-users
-└── linux-admin
+      ├── wazuh-admin
+      ├── wazuh-analyst
+      ├── wazuh-audit
+      ├── gitea-admin
+      ├── gitea-dev
+      ├── jenkins-admin
+      ├── jenkins-dev
+      ├── vpn-users
+      └── linux-admin
 
 ```
 
