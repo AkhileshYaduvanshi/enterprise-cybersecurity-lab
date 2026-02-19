@@ -9,7 +9,7 @@ A full enterprise-style Security Operations lab built on a 16GB RAM system.
 
 This project simulates a real-world organization with identity management, firewall segmentation, SIEM monitoring, containerized services, Kubernetes workloads, CI/CD automation, red team simulations, and incident response workflows.
 
-**Note - This is not a tool installation project — it is a structured security engineering journey.**
+**Note - This is not a tool installation project - it is a structured security engineering journey.**
 
 ## Why This Lab Is Different
 
@@ -38,8 +38,7 @@ This lab focuses on:
 - Network Segmentation
 - Active Directory Deployment
 - SIEM Integration (Wazuh)
-- Dockerized Services
-- Kubernetes & CI/CD
+- Dockerized Services ?
 - Detection Engineering
 - MITRE ATT&CK Mapping
 - Incident Response
@@ -56,7 +55,6 @@ This lab is built on:
 
 Because of hardware limitations:
 
-- Not all services run simultaneously
 - Docker is used to reduce memory usage
 - Windows Server Core is preferred over GUI
 - Lightweight Linux VMs are prioritized
@@ -70,12 +68,11 @@ Core Hypervisor: Proxmox VE
 Firewall & VPN: pfSense  
 Identity Layer: Active Directory (Windows Server Core)  
 Monitoring Layer: Wazuh SIEM  
-Container Services: Docker (Pi-hole, Nginx Proxy, Internal Apps)  
-Orchestration: Lightweight Kubernetes (k3s)  
+Container Services: Docker (Pi-hole, Nginx Proxy ) ?  
 Access Control: Jump Host  
-Threat Simulation: Red Team Canary  
+Threat Simulation: Red Team Canary ?
 Mapping: MITRE ATT&CK Navigator  
-Decoy Assets: Honeypot  
+Decoy Assets: Honeypot ?
 
 External Devices:
 
@@ -84,9 +81,9 @@ External Devices:
 
 ---
 
-# Project Lifecycle
+# Project Architecture
 
-This lab is built in structured phases.
+The project architecture is designed as a hardened security ecosystem, where pfSense orchestrates network isolation and Wazuh provides continuous monitoring and threat detection across the Active Directory domain.
 
 <img width="1422" height="1272" alt="labarch-2" src="https://github.com/user-attachments/assets/702911c4-9296-40c8-9546-f88038e24482" />
 
@@ -97,10 +94,8 @@ This lab is built in structured phases.
 This lab will evolve to include:
 
 - Additional endpoints
-- EDR integration
 - Advanced threat hunting
 - Purple team simulations
-- Automation playbooks
 - Performance tuning under 16GB
 
 ---
