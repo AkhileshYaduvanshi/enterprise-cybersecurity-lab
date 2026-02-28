@@ -1,6 +1,4 @@
-# Gitea LDAP Integration & RBAC Configuration
-
-## Objective
+# Gitea LDAP Integration
 
 Integrate Gitea with Active Directory using LDAP authentication and implement Role-Based Access Control (RBAC) using AD Security Groups.
 
@@ -10,10 +8,6 @@ This ensures:
 - No local password management
 - Enterprise-style role separation
 - Identity-driven DevSecOps governance
-
----
-
-# Identity Architecture Overview
 
 Domain:
 lab.internal
@@ -25,18 +19,15 @@ OU Structure:
 
 ```
 
-OU=lab_internal
+OU=_tier2
 ├── OU=Users
-├── OU=Groups
 └── OU=ServiceAccounts
 
 ````
 
 Gitea integrates with Active Directory through a dedicated service account.
 
----
-
-# Create Dedicated LDAP Service Account
+Create Dedicated LDAP Service Account
 
 ## Why Not Use Administrator?
 
@@ -47,8 +38,6 @@ Enterprise best practice:
 - Least privilege
 - No admin rights
 - Easy credential rotation
-
----
 
 ## PowerShell – Create Service Account
 
@@ -78,9 +67,7 @@ Verify:
 Get-ADUser $UserName -Properties Enabled,PasswordNeverExpires,DistinguishedName
 ```
 
----
-
-# Create Gitea RBAC Groups
+Create Gitea RBAC Groups
 
 Two security groups were created:
 
@@ -88,8 +75,6 @@ Two security groups were created:
 * Gitea_Analyst
 
 These groups control application-level access.
-
----
 
 ## PowerShell – Create Groups
 
@@ -112,8 +97,6 @@ New-ADGroup `
  -Path $GroupsOU `
  -Description "Read/Analyst access for Gitea"
 ```
-
----
 
 ## Add Users to Groups
 
@@ -158,8 +141,6 @@ Use the following configuration:
 
 Save configuration.
 
----
-
 # Validate LDAP Authentication
 
 1. Log out of Gitea.
@@ -177,8 +158,6 @@ If successful:
 
 * User auto-creates in Gitea
 * Authentication now controlled by AD
-
----
 
 # Optional – Admin Filter (RBAC Enforcement)
 
