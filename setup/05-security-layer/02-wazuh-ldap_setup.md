@@ -1,10 +1,5 @@
 #  Wazuh 4.14+ LDAP Integration (Active Directory)
-
-### Complete Production Walkthrough + Troubleshooting Guide
-
----
-
-# Environment Overview
+Environment Overview
 
 | Component          | Value                                                               |
 | ------------------ | ------------------------------------------------------------------- |
@@ -19,16 +14,6 @@
 
 ---
 
-# Architecture Overview
-
-![Image](https://documentation.wazuh.com/current/_images/deployment-architecture1.png)
-
-![Image](https://documentation.wazuh.com/current/_images/wazuh-indexer1.png)
-
-![Image](https://www.tecracer.com/blog/img/2023/05/image-20230403211849575.png)
-
-![Image](https://media2.dev.to/dynamic/image/width%3D800%2Cheight%3D%2Cfit%3Dscale-down%2Cgravity%3Dauto%2Cformat%3Dauto/https%3A%2F%2Fraw.githubusercontent.com%2Fvumdao%2Faws-vpc-opensearch%2Fmaster%2Fdocs%2Fimages%2Farchitect.png)
-
 Authentication Flow:
 
 1. User logs into Wazuh Dashboard
@@ -41,56 +26,7 @@ Authentication Flow:
 5. Index permissions applied
 6. Dashboard loads
 
----
-
-# Problems We Faced (Important Lessons)
-
-### API Not Running
-
-Cause:
-
-* Corrupted API directory
-* Migration artifact from previous version
-
-Fix:
-
-```bash
-sudo rm -rf /var/ossec/api/configuration/security
-sudo systemctl restart wazuh-manager
-```
-
----
-
-### Wazuh Dashboard "Server not ready yet"
-
-Cause:
-
-* wazuh-indexer not running
-* Port 9200 not listening
-
-Check:
-
-```bash
-sudo ss -tulnp | grep 9200
-```
-
-Fix:
-
-```bash
-sudo systemctl restart wazuh-indexer
-```
-
----
-
-### securityadmin.sh Not Working
-
-Cause:
-
-* Used old syntax (`-c`)
-* JAVA_HOME not exported correctly
-* Using `sudo` without `-E`
-
-Correct Command (Wazuh 4.14+ syntax):
+Command (Wazuh 4.14+ syntax):
 
 ```bash
 export OPENSEARCH_JAVA_HOME=/usr/share/wazuh-indexer/jdk
@@ -106,7 +42,7 @@ sudo -E ./securityadmin.sh \
 
 ---
 
-# Step 1 — Create LDAP Service Account (AD Side)
+Step 1 — Create LDAP Service Account (AD Side)
 
 On Domain Controller:
 
@@ -123,9 +59,7 @@ This account:
 * Is used only for binding/searching
 * Should not have admin privileges
 
----
-
-# Step 2 — Verify LDAP Connectivity
+Step 2 — Verify LDAP Connectivity
 
 From Wazuh server:
 
@@ -139,9 +73,7 @@ ldapsearch -H ldap://172.16.1.10:389 \
 
 If this fails → OpenSearch LDAP will fail.
 
----
-
-# Step 3 — Configure LDAP in OpenSearch
+Step 3 — Configure LDAP in OpenSearch
 
 File:
 
@@ -172,8 +104,6 @@ ldap:
       usersearch: '(sAMAccountName={0})'
 ```
 
----
-
 ### Authorization Section
 
 ```yaml
@@ -195,7 +125,7 @@ roles_from_myldap:
 
 ---
 
-# Step 4 — Create OpenSearch Roles
+Step 4 — Create OpenSearch Roles
 
 File:
 
@@ -203,7 +133,7 @@ File:
 /etc/wazuh-indexer/opensearch-security/roles.yml
 ```
 
-### Admin Role
+Admin Role
 
 ```yaml
 wazuh_admin_role:
@@ -223,7 +153,7 @@ wazuh_admin_role:
 
 ---
 
-### Analyst Role
+Analyst Role
 
 ```yaml
 wazuh_analyst_role:
@@ -246,7 +176,7 @@ wazuh_analyst_role:
 
 ---
 
-# Step 5 — Map AD Groups to Roles
+Step 5 — Map AD Groups to Roles
 
 File:
 
@@ -276,7 +206,7 @@ NOT full DN.
 
 ---
 
-# Step 6 — Apply Configuration
+Step 6 — Apply Configuration
 
 ```bash
 sudo -E ./securityadmin.sh \
@@ -295,11 +225,9 @@ sudo systemctl restart wazuh-indexer
 sudo systemctl restart wazuh-dashboard
 ```
 
----
+##Debugging Methodology
 
-# Debugging Methodology
-
-## Check Roles Mapping
+Check Roles Mapping
 
 ```bash
 curl -k --cert admin.pem --key admin-key.pem \
@@ -307,45 +235,10 @@ curl -k --cert admin.pem --key admin-key.pem \
 https://localhost:9200/_plugins/_security/api/rolesmapping
 ```
 
----
-
-## Check LDAP Auth Config
+Check LDAP Auth Config
 
 ```bash
 curl -k --cert admin.pem --key admin-key.pem \
 --cacert root-ca.pem \
 https://localhost:9200/_plugins/_security/api/securityconfig
 ```
-
----
-
-## Common Errors
-
-### Invalid username/password
-
-Cause:
-
-* LDAP bind failed
-* SSL mismatch
-* Wrong port
-
----
-
-### No permissions for indices:data/read/search
-
-Cause:
-
-* Role exists but index permissions missing
-
-Fix:
-Add wazuh-* and .kibana* index patterns
-
----
-
-### securityadmin.sh not applying
-
-Cause:
-
-* Wrong flag (-c instead of -cd)
-* Forgot sudo -E
-* JAVA_HOME not exported
