@@ -1,7 +1,5 @@
 # Gitea Installation (Secure Git Server)
 
-## Objective
-
 Deploy a lightweight, self-hosted Git server inside the Enterprise Home Lab.
 
 Gitea will serve as:
@@ -12,26 +10,6 @@ Gitea will serve as:
 - Supply chain security testing platform
 
 This service runs inside Docker and is fully monitored by Wazuh.
-
----
-
-## Why Gitea?
-
-In enterprise environments, Git servers are critical because they:
-
-- Store source code
-- Trigger CI/CD pipelines
-- Contain secrets if misconfigured
-- Act as supply chain entry points
-
-We selected **Gitea** because:
-
-- Lightweight (low RAM usage)
-- Supports LDAP integration
-- Easy to containerize
-- Suitable for home lab scale
-
----
 
 ## Architecture Position
 
@@ -57,7 +35,7 @@ Access URL:
 
 ---
 
-## Step 1 – Create Persistent Storage
+Step 1 – Create Persistent Storage
 
 We do NOT run containers without persistent storage.
 
@@ -68,7 +46,7 @@ sudo mkdir -p /opt/devsecops/gitea/data
 sudo chown -R devops:devops /opt/devsecops
 ````
 
-### Why?
+Why?
 
 If the container is deleted, Docker volumes inside the container are lost.
 
@@ -83,15 +61,13 @@ All repositories and configuration persist on disk.
 Enterprise rule:
 Always separate application from data.
 
----
-
-## Step 2 – Create Dedicated Docker Network
+Step 2 – Create Dedicated Docker Network
 
 ```bash
 docker network create devsecops-net
 ```
 
-### Why?
+Why?
 
 This isolates DevSecOps services from default Docker network.
 
@@ -106,9 +82,7 @@ Will use this same isolated network.
 Enterprise principle:
 Service isolation improves security and observability.
 
----
-
-## Step 3 – Deploy Gitea Container
+Step 3 – Deploy Gitea Container
 
 ```bash
 docker run -d \
@@ -123,9 +97,7 @@ docker run -d \
   gitea/gitea:latest
 ```
 
----
-
-## What Each Parameter Means
+What Each Parameter Means
 
 | Option                             | Explanation                 |
 | ---------------------------------- | --------------------------- |
@@ -139,9 +111,7 @@ docker run -d \
 | -e USER_GID=1000                   | File ownership alignment    |
 | --restart always                   | Auto start after reboot     |
 
----
-
-## Step 4 – Verify Container
+Step 4 – Verify Container
 
 Check running containers:
 
@@ -165,9 +135,7 @@ docker logs gitea
 
 No critical errors should appear.
 
----
-
-## Step 5 – Initial Web Setup
+Step 5 – Initial Web Setup
 
 Open browser from Jump Host:
 
@@ -178,14 +146,12 @@ http://172.16.1.100:3000
 Configuration:
 
 * Database: SQLite (lightweight for lab)
-* Application URL: [http://172.16.1.100:3000](http://172.16.1.100:3000)
+* Application URL: [http://172.16.1.100:3000]
 * Create admin account
 
 Click Install.
 
----
-
-## Step 6 – Validate Git Functionality
+Step 6 – Validate Git Functionality
 
 From Jump Host:
 
@@ -197,9 +163,7 @@ git clone http://172.16.1.100:3000/<username>/<repo>.git
 
 If clone works → Git server is operational.
 
----
-
-## Persistence Test
+Persistence Test
 
 Reboot VM:
 
@@ -218,5 +182,3 @@ Container should auto-start because of:
 ```
 --restart always
 ```
-
-This confirms enterprise-level service persistence.
