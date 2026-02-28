@@ -1,21 +1,10 @@
-# UTM Kali Installation.md
+# UTM Kali Installation
 
-## Step 1 – Download Kali ISO
+Step 1 – Download Kali ISO
 
-Download:
-Kali Linux Installer ISO (64-bit)
-
-From official Kali site.
-
----
-
-## Step 2 – Create VM in UTM
+Step 2 – Create VM in UTM
 
 In UTM on Mac:
-
-### VM Configuration
-
-System:
 
 * Virtualize
 * Linux
@@ -31,7 +20,6 @@ Network:
 * Shared Network (bridged to Mac interface)
 * Must receive IP from 192.168.1.x
 
----
 
 After installation, verify:
 
@@ -49,9 +37,7 @@ If you get 172.x.x.x → wrong network mode.
 
 We want attacker on HOME network.
 
----
-
-# Network Integration with pfSense
+## Network Integration with pfSense
 
 Now the important part.
 
@@ -69,8 +55,6 @@ pfSense blocks inbound traffic from WAN to LAN.
 That is GOOD.
 
 We will create **controlled test rules**.
-
----
 
 ## Step 1 – Allow ICMP from Attacker
 
@@ -108,24 +92,12 @@ Verify:
 impacket-secretsdump -h
 ```
 
----
-
-# Operational Security Notes
-
-Very important for your training maturity.
+ Operational Security Notes
 
 This attacker VM:
 
 * Should NEVER have direct route to 172.16.1.x without firewall logging
 * All attack traffic should pass through pfSense
-* You should monitor logs in:
-
-  * pfSense firewall logs
-  * Wazuh alerts
-  * Windows event logs
-
-Goal:
 
 You don’t just attack.
-
 You investigate your own attack.
