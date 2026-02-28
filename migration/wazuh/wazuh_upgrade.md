@@ -16,8 +16,6 @@ sudo systemctl stop wazuh-dashboard
 sudo systemctl stop filebeat
 ```
 
----
-
 2. Component Upgrade Order
 
 The components were upgraded individually using APT.
@@ -34,8 +32,6 @@ After upgrade:
 sudo systemctl start wazuh-indexer
 ```
 
----
-
 Step 2 – Upgrade Wazuh Manager
 
 ```bash
@@ -47,8 +43,6 @@ After upgrade:
 ```bash
 sudo systemctl start wazuh-manager
 ```
-
----
 
 Step 3 – Upgrade Wazuh Dashboard
 
@@ -62,11 +56,7 @@ After upgrade:
 sudo systemctl start wazuh-dashboard
 ```
 
----
-
 # Issues Encountered After Upgrade
-
----
 
 ## Issue 1 – Dashboard Not Listening on Port 443
 
@@ -107,8 +97,6 @@ Restarted dashboard:
 ```bash
 sudo systemctl restart wazuh-dashboard
 ```
-
----
 
 ## Issue 2 – Browser Error
 
