@@ -122,7 +122,7 @@ Possible reasons:
 * Partial deletion of `/var/ossec/api`
 * Configuration mismatch
 
-# Critical Mistake (Learning Section)
+### Critical Mistake (Learning Section)
 
 We deleted:
 
@@ -155,8 +155,6 @@ sudo apt-get install --reinstall wazuh-manager
 
 This restores missing API files.
 
----
-
 Step 2: Start Services in Correct Order
 
 ```bash
@@ -181,8 +179,6 @@ Browser retained:
 * security tenant cache
 
 Even clearing "history" did NOT remove site storage.
-
----
 
 ## Fix
 
