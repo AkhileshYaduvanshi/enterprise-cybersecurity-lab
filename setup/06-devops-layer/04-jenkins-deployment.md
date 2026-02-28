@@ -1,20 +1,6 @@
-# Jenkins Deployment & DevSecOps Security Monitoring
-
-## Objective
+# Jenkins Deployment
 
 Deploy Jenkins as the CI/CD engine for the DevSecOps layer and integrate full security monitoring through Wazuh.
-
-This phase introduces:
-
-- CI/CD automation
-- Container build capability
-- Security observability
-- File integrity monitoring
-- DevSecOps attack surface visibility
-
----
-
-#  Architecture Overview
 
 Current DevSecOps Stack:
 
@@ -36,10 +22,6 @@ User → Gitea → Jenkins → Docker → (Future: Registry) → Runtime
 
 All activity monitored by Wazuh.
 
----
-
-# Jenkins Deployment
-
 ## Why Jenkins?
 
 Jenkins acts as the automation engine that:
@@ -52,9 +34,7 @@ Jenkins acts as the automation engine that:
 
 In enterprise, Jenkins is a high-value target.
 
----
-
-## Step 1 – Create Persistent Directory
+Step 1 – Create Persistent Directory
 
 ```bash
 sudo mkdir -p /opt/devsecops/jenkins
@@ -71,9 +51,7 @@ All Jenkins data is stored in:
 /opt/devsecops/jenkins
 ```
 
----
-
-## Step 2 – Deploy Jenkins Container
+Step 2 – Deploy Jenkins Container
 
 ```bash
 docker run -d \
@@ -87,9 +65,7 @@ docker run -d \
   jenkins/jenkins:lts
 ```
 
----
-
-## Explanation of Key Options
+Explanation of Key Options
 
 | Option                    | Purpose                               |
 | ------------------------- | ------------------------------------- |
@@ -100,9 +76,8 @@ docker run -d \
 | --network devsecops-net   | Isolated DevSecOps network            |
 | --restart always          | Auto-start after reboot               |
 
----
 
-## Important Security Note
+### Important Security Note
 
 Mounting:
 
@@ -118,9 +93,7 @@ An attacker can control the entire DevSecOps VM.
 
 This will later be used for attack simulation and detection engineering.
 
----
-
-# Initial Jenkins Setup
+## Initial Jenkins Setup
 
 Access:
 
@@ -142,29 +115,6 @@ Create local admin user (LDAP integration will be done later).
 
 # Wazuh Monitoring – Docker Visibility
 
-After deployment, Wazuh detected:
-
-* Docker image pull
-* Container start
-* Network join events
-* sudo command execution
-
-Example detected events:
-
-* Docker image pulled
-* Container joined devsecops-net
-* Successful sudo to root
-
-This confirms:
-
-System-level monitoring is functioning.
-
----
-
-# Identified Monitoring Gap
-
-Observation:
-
 Wazuh saw Docker daemon activity but did NOT see:
 
 * Jenkins login attempts
@@ -177,8 +127,6 @@ Reason:
 Jenkins logs are inside the container filesystem.
 
 This is a common enterprise monitoring blind spot.
-
----
 
 # Enable File Integrity Monitoring (FIM)
 
@@ -216,9 +164,7 @@ sudo systemctl restart wazuh-agent
 
 This enables DevSecOps-level detection engineering.
 
----
-
-# Enable Gitea Log Monitoring
+## Enable Gitea Log Monitoring
 
 To monitor authentication and Git activity, add:
 
