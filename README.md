@@ -1,4 +1,4 @@
-# Compelete Cybersecurity Home Lab
+# Enterprise Cybersecurity Home Lab
 
 ![Status](https://img.shields.io/badge/Status-Active-green)
 ![Hardware](https://img.shields.io/badge/RAM-16GB-blue)
@@ -9,43 +9,16 @@ A full enterprise-style Security Operations lab built on a 16GB RAM system.
 
 This project simulates a real-world organization with identity management, firewall segmentation, SIEM monitoring, containerized services, Kubernetes workloads, CI/CD automation, red team simulations, and incident response workflows.
 
-**Note - This is not a tool installation project - it's a structured security engineering journey.**
-
-## Why This Lab Is Different
-
-This project demonstrates:
-
-- Infrastructure design under hardware constraints
-- Enterprise-style segmentation
-- Detection engineering maturity
-- DevSecOps integration
-- Threat simulation & validation
-- Real incident response lifecycle
-
-Every phase builds upon the previous one:
-
-Infrastructure - Visibility - Hardening - Attack Simulation - Response
-
----
-
-# Project Objective
-
-To design, deploy, validate, harden, and simulate attacks against a production-style infrastructure using limited hardware.
-
 This lab focuses on:
 
 - Infrastructure Engineering
 - Network Segmentation
 - Active Directory Deployment
 - SIEM Integration (Wazuh)
-- Dockerized Services ?
+- Dockerized Services
 - Detection Engineering
 - MITRE ATT&CK Mapping
 - Incident Response
-
----
-
-# Hardware Constraints & Philosophy
 
 This lab is built on:
 
@@ -62,7 +35,7 @@ Because of hardware limitations:
 
 ---
 
-# High-Level Architecture
+## High-Level Architecture
 
 Core Hypervisor: Proxmox VE  
 Firewall & VPN: pfSense  
@@ -76,32 +49,16 @@ Decoy Assets: Honeypot ?
 
 External Devices:
 
-- User Laptop (VPN Client + Domain User Simulation)
-- Attacker Laptop (Isolated Red Team Environment)
+- User Laptop with following 2 VM
+    - Win 11 - (VPN Client + Domain User Simulation)
+    - Kali ( Red Team Environment)
 
 ---
 
-# Project Architecture
+## Architecture
 
-The project architecture is designed as a hardened security ecosystem, where pfSense orchestrates network isolation and Wazuh provides continuous monitoring and threat detection across the Active Directory domain.
+It is designed as a hardened security ecosystem, where pfSense orchestrates network isolation and Wazuh provides continuous monitoring and threat detection across the Active Directory domain.
 
 <img width="1422" height="1272" alt="labarch-2" src="https://github.com/user-attachments/assets/702911c4-9296-40c8-9546-f88038e24482" />
 
 ---
-
-# Continuous Improvement
-
-This lab will evolve to include:
-
-- Additional endpoints
-- Advanced threat hunting
-- Purple team simulations
-- Performance tuning under 16GB
-
----
-
-# Author
-
-Akhilesh  
-Cybersecurity Engineer  
-Focused on Detection Engineering, SOC Operations & Infrastructure Security
