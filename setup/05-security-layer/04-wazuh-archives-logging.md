@@ -1,6 +1,4 @@
-# Wazuh Full Logging & Archive Configuration
-
-## Overview
+# Wazuh Full Logging
 
 This document describes the complete configuration of Wazuh to:
 
@@ -17,9 +15,7 @@ This configuration ensures that both **alerts and raw logs** are available for:
 * Incident investigation
 * Behavioral analysis
 
----
-
-# Logging Architecture Overview
+Logging Architecture Overview
 
 Wazuh 4.x logging pipeline:
 
@@ -46,11 +42,9 @@ Two types of indexed data:
 
 For IR training, **archives are mandatory**.
 
----
+Enable Full Log Archiving
 
-# Enable Full Log Archiving
-
-## Step 1 – Edit Wazuh Manager Configuration
+Step 1 – Edit Wazuh Manager Configuration
 
 On Wazuh server:
 
@@ -71,9 +65,7 @@ Inside `<global>` section, ensure:
 
 Save and exit.
 
----
-
-## Step 2 – Restart Wazuh Manager
+Step 2 – Restart Wazuh Manager
 
 ```bash
 systemctl restart wazuh-manager
@@ -91,9 +83,7 @@ Status must show:
 active (running)
 ```
 
----
-
-# Verify Archive Log Creation
+Verify Archive Log Creation
 
 Check archive directory:
 
@@ -119,9 +109,7 @@ archives.log
 
 This confirms raw logs are being generated.
 
----
-
-# Verify Archive Indexing in OpenSearch
+Verify Archive Indexing in OpenSearch
 
 Check indexed data:
 
@@ -138,9 +126,7 @@ wazuh-alerts-4.x-YYYY.MM.DD
 
 If archives index exists → Filebeat shipping is working.
 
----
-
-# Filebeat Configuration Verification
+Filebeat Configuration Verification
 
 Check Filebeat module configuration:
 
@@ -171,9 +157,7 @@ Verify:
 systemctl status filebeat
 ```
 
----
-
-# Create Archive Data View in Dashboard
+Create Archive Data View in Dashboard
 
 Go to:
 
@@ -199,23 +183,10 @@ Select timestamp field:
 
 Save.
 
----
-
-# Validate Archive Visibility
+Validate Archive Visibility
 
 Go to:
 
 Discover → Select `wazuh-archives-4.x-*`
-
-You should now see:
-
-* Windows logon events
-* Background authentication
-* Service activity
-* Process creation (4688)
-* System events
-* Non-alerted normal traffic
-
-This index contains:
 
 All raw logs BEFORE alert filtering.
