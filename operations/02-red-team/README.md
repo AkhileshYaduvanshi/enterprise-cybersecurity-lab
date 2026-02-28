@@ -1,8 +1,6 @@
-# Red Teaming Operations – Enterprise Lab
+# Red Teaming Operations
 
-## Purpose
-
-This folder documents structured adversary simulation activities performed inside the Enterprise Lab.
+Structured adversary simulation activities performed inside the Enterprise Lab.
 
 The objective is to:
 
@@ -16,8 +14,6 @@ The objective is to:
 
 This is **controlled adversary simulation**, not random tool execution.
 
----
-
 ## Scope of Engagement
 
 All attacks are performed ONLY within:
@@ -29,8 +25,6 @@ All attacks are performed ONLY within:
 * Firewall-controlled environment
 
 No external systems are targeted.
-
----
 
 ## Safety & Snapshot Policy (MANDATORY)
 
@@ -54,8 +48,6 @@ Before every attack simulation:
 After testing:
 
 * Restore snapshot if system integrity impacted.
-
----
 
 ## Attack Methodology Framework
 
@@ -81,8 +73,6 @@ Each technique folder corresponds to one ATT&CK phase:
 11-Impact/
 ```
 
----
-
 ## Standard Technique Folder Structure
 
 Each simulated attack MUST follow this documentation template:
@@ -95,8 +85,6 @@ Technique_Name/
 ├── Screenshots/
 └── Findings.md
 ```
-
----
 
 ## Required Documentation Template
 
@@ -153,8 +141,6 @@ What actually appeared?
 * No detection?
 * Partial visibility?
 
----
-
 ## Logging Validation Checklist
 
 After each attack:
@@ -174,8 +160,6 @@ If something fails:
 * Document gap
 * Move to Blue Team folder
 
----
-
 ## Red Team Execution Rules
 
 1. No destructive payloads.
@@ -186,8 +170,6 @@ If something fails:
 6. Simulate C2 locally or via controlled test methods.
 
 This lab is for detection improvement, not destruction.
-
----
 
 ## Attack Campaign Model
 
@@ -210,8 +192,6 @@ Each phase must be:
 * Detected
 * Investigated
 
----
-
 ## Integration With Blue Teaming
 
 After completing a technique:
@@ -233,8 +213,6 @@ There you will:
 Red Team creates activity.
 Blue Team validates visibility.
 
----
-
 ## Integration With Hardening
 
 If weakness discovered:
@@ -255,8 +233,6 @@ Include:
 
 Then retest attack.
 
----
-
 ## Detection Maturity Levels
 
 Each technique will be graded:
@@ -269,8 +245,6 @@ Level 4 – Correlated detection
 Level 5 – Prevented or blocked
 
 Goal: Move every technique toward Level 4–5.
-
----
 
 ## Naming Convention
 
@@ -306,9 +280,7 @@ The lab currently supports:
 
 Each attack must attempt to trigger at least one of these.
 
----
-
-## Metrics We Will Track
+### Metrics We Will Track
 
 For each technique:
 
@@ -323,9 +295,7 @@ Over time this becomes:
 
 A measurable ATT&CK coverage dashboard.
 
----
-
-## Long-Term Objective
+### Long-Term Objective
 
 Transform this lab into:
 
@@ -334,20 +304,14 @@ Transform this lab into:
 * A SOC analyst skill-building framework
 * A documentation-rich portfolio project
 
----
 
-## Red Team Operating Philosophy
+### Red Team Operating Philosophy
 
-This is not about:
-
-Running tools blindly.
+This is not about running tools blindly.
 
 This is about:
 
-Understanding how systems generate telemetry.
-
-Understanding how logs correlate.
-
-Understanding what attackers leave behind.
-
-And learning how defenders catch them.
+ - Understanding how systems generate telemetry.
+ - Understanding how logs correlate.
+ - Understanding what attackers leave behind.
+ - And learning how defenders catch them.
