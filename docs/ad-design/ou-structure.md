@@ -55,14 +55,14 @@ Tier 1 contains server systems and server-level administrators.
 
 Tier1
 ├── Servers
-└── AdminAccounts
+└── ServerAdmin
 
 ```
 
 ### Servers
 Contains domain-joined server systems (e.g., SIEM, Git, CI/CD).
 
-### AdminAccounts
+### ServerAdmin
 Contains accounts responsible for managing servers.
 
 
