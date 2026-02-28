@@ -1,19 +1,6 @@
 # OpenVPN Remote Access Setup
 
-## Overview
-
-This guide covers the configuration of OpenVPN on pfSense to enable secure remote access to the internal lab network (172.16.1.0/24). This allows SSH and management access to all lab VMs from external networks.
-
-## What We Accomplished
-
- OpenVPN Server configured on pfSense  
- Certificate Authority and certificates created  
- VPN user account with certificate generated  
- Client export package installed  
- `.ovpn` configuration file ready for download  
- VPN tested and working - able to ping internal network
-
-***
+Configure OpenVPN on pfSense to enable secure remote access to the internal lab network (172.16.1.0/24). This allows SSH and management access to all lab VMs from external networks.
 
 ## OpenVPN Server Configuration
 
