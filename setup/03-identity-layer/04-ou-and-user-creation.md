@@ -1,12 +1,6 @@
-# 04-Identity-Layer-RBAC-Setup.md
-
----
-
 # 04 – Identity Layer & RBAC Setup
 
-## Objective
-
-In this step, we implement the **Identity and Access Management (IAM) layer** for the lab.
+Implement the **Identity and Access Management (IAM) layer** for the lab.
 
 The goal is to:
 
@@ -20,8 +14,6 @@ The goal is to:
 
 This completes the foundational identity architecture of the lab.
 
----
-
 # Environment Information
 
 | Item              | Value               |
@@ -31,9 +23,7 @@ This completes the foundational identity architecture of the lab.
 | Domain Controller | DC-01.lab.internal  |
 | Functional Level  | Windows Server 2016 |
 
----
-
-# Step 1 – Create OU Structure
+Step 1 – Create OU Structure
 
 We create a clean and scalable OU structure.
 
@@ -54,8 +44,6 @@ DC=lab.internal
 * Enterprise-style structure
 * Scalable for future expansion
 
----
-
 # Step 2 – Define RBAC Groups
 
 We create application-specific security groups.
@@ -71,8 +59,6 @@ We create application-specific security groups.
 * pfSense_Analyst
 * Wazuh_Analyst
 * AD_Read_only
-
----
 
 # Step 3 – Create User Accounts
 
@@ -92,16 +78,12 @@ Standard SOC analyst account with:
 * Analyst access to pfSense
 * Analyst access to Wazuh
 
----
-
 # Password Configuration (Lab Only)
 
 For simplicity:
 
-```
 Password: P@$$w0rd!
 Password Never Expires: Enabled
-```
 
 ⚠ This is for lab purposes only.
 
